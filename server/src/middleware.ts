@@ -1,16 +1,13 @@
-import * as ep from "@ty-ras/endpoint";
+import type * as ep from "@ty-ras/endpoint";
 import * as prefix from "@ty-ras/endpoint-prefix";
 import * as server from "@ty-ras/server";
-import * as koa from "koa";
+import type * as koa from "koa";
 
-// Using given various endpoints, create Koa middlewares.
 export const createMiddleware = <TState>(
   endpoints: Array<
     ep.AppEndpoint<koa.ParameterizedContext<TState>, Record<string, unknown>>
   >,
-  events:
-    | server.ServerEventEmitter<koa.ParameterizedContext<TState>, TState>
-    | undefined = undefined,
+  events?: server.ServerEventEmitter<koa.ParameterizedContext<TState>, TState>,
 ): koa.Middleware<TState> => {
   // Combine given endpoints into top-level entrypoint
   const regExpAndHandler = prefix
