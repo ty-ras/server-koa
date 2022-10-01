@@ -86,7 +86,7 @@ jobs:
           cat '${{ matrix.dir }}/package.json' | jq -M 'del(.type)' > '${{ matrix.dir }}/package.json.new'
           mv '${{ matrix.dir }}/package.json.new' '${{ matrix.dir }}/package.json'
           ./scripts/build.sh '${{ matrix.dir }}' ci
-          ls -al dist
+          ls -al '${{ matrix.dir }}/dist'
 
       - id: coverage
         name: Upload coverage for '${{ matrix.dir }}'
