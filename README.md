@@ -8,4 +8,4 @@ The protocol specification is checked both at compile-time and run-time to verif
 This all is done in such way that it does not make development tedious or boring, but instead robust and fun!
 
 This particular repository contains Koa HTTP server related library, which is designed to be consumed by users of TyRas:
-- [server](./ser) library exposes `createMiddleware` function to create Koa middleware which will server TyRas `AppEndpoint`s.
+- [server](./ser) library exposes `createMiddleware` function to create Koa middleware which will serve given TyRAS `AppEndpoint`s.
