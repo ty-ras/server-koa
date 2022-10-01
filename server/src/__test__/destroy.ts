@@ -1,4 +1,3 @@
-// TODO create 'server-test-support' library with this file
 import * as net from "net";
 import * as crypto from "crypto";
 import type * as stream from "stream";

@@ -1,4 +1,3 @@
-// TODO create 'server-test-support' library with this file
 import * as http from "http";
 import type * as stream from "stream";
 
@@ -8,23 +7,28 @@ export const requestAsync = (
 ) =>
   new Promise<{
     headers: http.IncomingHttpHeaders;
-    data: string;
+    data: string | undefined;
   }>((resolve, reject) => {
     const writeable = http
       .request(opts, (resp) => {
-        let data = "";
+        resp.setEncoding("utf8");
+        let data: string | undefined;
         const headers = resp.headers;
         const statusCode = resp.statusCode;
 
         // A chunk of data has been received.
-        resp.on("data", (chunk) => {
-          data += chunk;
+        resp.on("data", (chunk: string) => {
+          if (data === undefined) {
+            data = chunk;
+          } else {
+            data += chunk;
+          }
         });
 
         // The whole response has been received. Print out the result.
         resp.on("end", () => {
           if (statusCode === undefined || statusCode >= 400) {
-            reject(new Error(`Status code: ${statusCode}`));
+            reject(new RequestError(statusCode, getErrorMessage(statusCode)));
           } else {
             resolve({
               headers,
@@ -55,3 +59,15 @@ const awaitAndThen = async (
     reject(e);
   }
 };
+
+export class RequestError extends Error {
+  public constructor(
+    public readonly statusCode: number | undefined,
+    message: string,
+  ) {
+    super(message);
+  }
+}
+
+export const getErrorMessage = (statusCode: number | undefined) =>
+  `Status code: ${statusCode}`;

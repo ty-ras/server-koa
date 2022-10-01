@@ -165,10 +165,10 @@
   dependencies:
     "@ty-ras/data-backend" "0.9.1"
 
-"@ty-ras/server@0.9.2":
-  version "0.9.2"
-  resolved "https://registry.yarnpkg.com/@ty-ras/server/-/server-0.9.2.tgz#7f96fa59cfd8c008a497cb84e65b4b5278d222a8"
-  integrity sha512-p2j62H82POWNTfD01U1LIuoE/YJlP3ftPBL0gCrM+Pu66sVMIS7+h1eMcZWV66ZilpHS5BJecC+U0vmkFL1zqQ==
+"@ty-ras/server@0.9.4":
+  version "0.9.4"
+  resolved "https://registry.yarnpkg.com/@ty-ras/server/-/server-0.9.4.tgz#9c923b9240a2d304af671c38bca53f7eb7cf6e15"
+  integrity sha512-C5NL9rfkQnSY6Ehr1Hl3ROhyO4YtoaZyW3SJ4fxnSSbd8BMVO7GRbd9diNHpJPpx4gGuv0946VRqY7ydMjwj7g==
   dependencies:
     "@ty-ras/endpoint" "0.9.0"
 

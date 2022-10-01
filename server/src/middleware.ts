@@ -3,6 +3,8 @@ import * as prefix from "@ty-ras/endpoint-prefix";
 import * as server from "@ty-ras/server";
 import type * as koa from "koa";
 
+// Important: This middleware *will not create* state objects required by endpoints!
+// It assumes some other middleware before this one will do so!
 export const createMiddleware = <TState>(
   endpoints: Array<
     ep.AppEndpoint<koa.ParameterizedContext<TState>, Record<string, unknown>>
