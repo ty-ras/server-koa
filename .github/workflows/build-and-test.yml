@@ -82,12 +82,10 @@ jobs:
         run: |
           set -e
 
-          mv '${{ matrix.dir }}/src/__test__/' '__src__test__/'
           # We can't redirect immediately back to same file, because processes are async, and we will end up with empty package.json
           cat '${{ matrix.dir }}/package.json' | jq -M 'del(.type)' > '${{ matrix.dir }}/package.json.new'
           mv '${{ matrix.dir }}/package.json.new' '${{ matrix.dir }}/package.json'
           ./scripts/build.sh '${{ matrix.dir }}' ci
-          mv '__src__test__/' '${{ matrix.dir }}/src/__test__/'
 
       - id: coverage
         name: Upload coverage for '${{ matrix.dir }}'
