@@ -12,8 +12,6 @@ module.exports = {
   },
   rules: {
     "prettier/prettier": "error",
-    "no-useless-return": "error",
-    "no-console": "error",
   },
   overrides: [
     {
