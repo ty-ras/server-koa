@@ -6,7 +6,7 @@ import type * as koa from "koa";
 // Important: This middleware *will not create* state objects required by endpoints!
 // It assumes some other middleware before this one will do so!
 export const createMiddleware = <TState>(
-  endpoints: Array<
+  endpoints: ReadonlyArray<
     ep.AppEndpoint<koa.ParameterizedContext<TState>, Record<string, unknown>>
   >,
   events?: server.ServerEventEmitter<koa.ParameterizedContext<TState>, TState>,
