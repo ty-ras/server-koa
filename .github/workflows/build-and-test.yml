@@ -36,11 +36,7 @@ jobs:
     strategy:
       matrix:
         dir:
-        - data
-        - data-backend
-        - data-frontend
-        - metadata-jsonschema
-        - state
+        - server
     runs-on: ubuntu-latest
     name: Build and test ${{ matrix.dir }}
     steps:
