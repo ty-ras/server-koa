@@ -1,5 +1,5 @@
 /**
- * @file This file contains internal code for e.g. implementing Node HTTP server -specific functionality of {@link server.ServerFlowCallbacksWithoutState}.
+ * @file This file contains internal code for e.g. implementing Koa HTTP server -specific functionality of {@link server.ServerFlowCallbacksWithoutState}.
  */
 
 import type * as server from "@ty-ras/server";

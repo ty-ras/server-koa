@@ -175,7 +175,20 @@ export interface ServerCreationOptions<
    * Set this to `true` explicitly if automatic detection of server being secure by {@link createServer} fails.
    */
   secure?: TSecure | undefined;
+
+  /**
+   * Optional options to {@link Koa} constructor.
+   */
+  koaOptions?: KoaOptions;
 }
+
+/**
+ * This type contains all the options one can give to Koa server.
+ */
+export type KoaOptions = Exclude<
+  ConstructorParameters<typeof Koa>[0],
+  undefined
+>;
 
 const secureHttp1OptionKeys: ReadonlyArray<keyof tls.TlsOptions> = [
   "key",
@@ -227,11 +240,12 @@ const createHandleHttpRequest = <
   endpoints,
   createState,
   events,
+  koaOptions,
 }: Pick<
   ServerCreationOptions<TStateInfo, TState, never, never>,
-  "endpoints" | "createState" | "events"
+  "endpoints" | "createState" | "events" | "koaOptions"
 >): HTTP1Or2Handler<TRequest, TResponse> => {
-  return new Koa()
+  return new Koa(koaOptions)
     .use(middleware.createMiddleware(endpoints, createState, events))
     .callback();
 };
