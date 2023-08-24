@@ -1,6 +1,6 @@
 {
   "name": "@ty-ras/server-koa",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "author": {
     "name": "Stanislav Muhametsin",
     "email": "346799+stazz@users.noreply.github.com",
@@ -34,7 +34,7 @@
     "koa": "^2.14.2"
   },
   "dependencies": {
-    "@ty-ras/server": "^2.0.0"
+    "@ty-ras/server": "^2.1.1"
   },
   "devDependencies": {
     "@ava/get-port": "2.0.0",

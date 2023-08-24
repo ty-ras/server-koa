@@ -9,7 +9,7 @@ import type * as context from "./context.types";
 import * as internal from "./internal";
 
 /**
- * Creates a new {@link koa.Middleware} to server the given TyRAS {@link ep.AppEndpoint}s.
+ * Creates a new {@link koa.Middleware} to serve the given TyRAS {@link ep.AppEndpoint}s.
  * @param endpoints The TyRAS {@link ep.AppEndpoint}s to serve through this Koa middleware.
  * @param createState The optional callback to create state for the endpoints.
  * @param events The optional {@link server.ServerEventHandler} callback to observe server events.
