@@ -6,8 +6,7 @@ import test from "ava";
 
 import * as spec from "../server";
 import * as secure from "./secure";
-import * as listen from "../listen";
-
+import * as serverNode from "../server-node";
 import * as testSupport from "@ty-ras/server-test-support";
 
 const createServer: testSupport.CreateServer = (
@@ -21,7 +20,7 @@ const createServer: testSupport.CreateServer = (
     ...getCreateState(info),
   });
   return {
-    server: listen.createNodeServerGeneric(
+    server: serverNode.createNodeServerGeneric(
       httpVersion === 2
         ? {
             httpVersion: 2,
