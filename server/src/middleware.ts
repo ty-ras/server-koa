@@ -9,18 +9,18 @@ import type * as context from "./context.types";
 import * as internal from "./internal";
 
 /**
- * Creates a new {@link koa.Middleware} to server the given TyRAS {@link ep.AppEndpoint}s.
+ * Creates a new {@link koa.Middleware} to serve the given TyRAS {@link ep.AppEndpoint}s.
  * @param endpoints The TyRAS {@link ep.AppEndpoint}s to serve through this Koa middleware.
  * @param createState The optional callback to create state for the endpoints.
  * @param events The optional {@link server.ServerEventHandler} callback to observe server events.
  * @returns The Koa middleware which will serve the given endpoints.
  */
-export const createMiddleware = <TStateInfo>(
+export const createMiddleware = <TStateInfo, TState>(
   endpoints: ReadonlyArray<ep.AppEndpoint<context.ServerContext, TStateInfo>>,
   createState?: context.CreateState<TStateInfo>,
   events?: server.ServerEventHandler<
     server.GetContext<context.ServerContext>,
-    TStateInfo
+    TState
   >,
 ): koa.Middleware<TStateInfo> => {
   return server.createTypicalServerFlow(

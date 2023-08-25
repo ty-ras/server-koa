@@ -6,7 +6,7 @@ import test from "ava";
 
 import * as spec from "../server";
 import * as secure from "./secure";
-
+import * as serverGeneric from "@ty-ras/server";
 import * as testSupport from "@ty-ras/server-test-support";
 
 const createServer: testSupport.CreateServer = (
@@ -14,39 +14,31 @@ const createServer: testSupport.CreateServer = (
   info,
   httpVersion,
   secure,
-) =>
-  httpVersion === 1
-    ? secure
-      ? spec.createServer({
-          endpoints,
-          ...getCreateState(info),
-          options: {
-            ...secureInfo,
-          },
-        })
-      : spec.createServer({ endpoints, ...getCreateState(info) })
-    : httpVersion === 2
-    ? secure
-      ? {
-          server: spec.createServer({
-            endpoints,
-            ...getCreateState(info),
-            httpVersion,
-            options: {
-              ...secureInfo,
-            },
-          }),
-          secure,
-        }
-      : {
-          server: spec.createServer({
-            endpoints,
-            ...getCreateState(info),
-            httpVersion,
-          }),
-          secure,
-        }
-    : doThrow(`Invalid http version: ${httpVersion}`);
+) => {
+  const server = spec.createServer({
+    endpoints,
+    ...getCreateState(info),
+  });
+  return {
+    server: serverGeneric.createNodeServerGeneric(
+      httpVersion === 2
+        ? {
+            httpVersion: 2,
+            secure,
+            options: secure ? secureInfo : {},
+          }
+        : httpVersion === 1
+        ? {
+            httpVersion: 1,
+            secure,
+            options: secure ? secureInfo : {},
+          }
+        : doThrow(`Invalid http version: ${httpVersion}`),
+      server.callback(),
+    ),
+    secure,
+  };
+};
 
 const secureInfo = secure.generateKeyAndCert();
 const doThrow = (msg: string) => {
@@ -83,10 +75,7 @@ testSupport.registerTests(test, createServer, {
 
 const getCreateState = (
   info: testSupport.ServerTestAdditionalInfo[0],
-): Pick<
-  spec.ServerCreationOptions<unknown, never, never, never>,
-  "createState"
-> =>
+): Pick<spec.ServerCreationOptions<unknown, never>, "createState"> =>
   info == 500
     ? {
         createState: () => {
