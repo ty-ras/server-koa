@@ -15,12 +15,12 @@ import * as internal from "./internal";
  * @param events The optional {@link server.ServerEventHandler} callback to observe server events.
  * @returns The Koa middleware which will serve the given endpoints.
  */
-export const createMiddleware = <TStateInfo>(
+export const createMiddleware = <TStateInfo, TState>(
   endpoints: ReadonlyArray<ep.AppEndpoint<context.ServerContext, TStateInfo>>,
   createState?: context.CreateState<TStateInfo>,
   events?: server.ServerEventHandler<
     server.GetContext<context.ServerContext>,
-    TStateInfo
+    TState
   >,
 ): koa.Middleware<TStateInfo> => {
   return server.createTypicalServerFlow(

@@ -445,10 +445,10 @@
   dependencies:
     "@ty-ras/endpoint" "^2.0.0"
 
-"@ty-ras/server@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@ty-ras/server/-/server-2.1.1.tgz#ea13ddbe58f3603d6eab396277c1cf97c2171fe7"
-  integrity sha512-KAiuSEYwXKQIfMSIDCaGjuX/hy42oes/JnyG0blumMNwR0kSA6PYonDfg1ROtBPO9dGQZ/mWiWS3JKbZfMFKoQ==
+"@ty-ras/server@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@ty-ras/server/-/server-2.2.0.tgz#6a1dc54767241355be5202006127afea3a2ff602"
+  integrity sha512-rJwZj20uiO2tcS9Ln+5TfapdILDPcWxYbeyIDUjmbOmkv+FvMma+pVgKhozNP3iQj1mnKN2CmqgIhaxKw+bRBg==
   dependencies:
     "@ty-ras/endpoint" "^2.0.0"
 
@@ -3464,11 +3464,6 @@ ts-api-utils@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ts-api-utils/-/ts-api-utils-1.0.1.tgz#8144e811d44c749cd65b2da305a032510774452d"
   integrity sha512-lC/RGlPmwdrIBFTX59wwNzqh7aR2otPNPR/5brHZm/XKFYKsfqxihXUe9pU3JI+3vGkl+vyCoNNnPhJn3aLK1A==
-
-ts-expect@1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/ts-expect/-/ts-expect-1.3.0.tgz#3f8d3966e0e22b5e2bb88337eb99db6816a4c1cf"
-  integrity sha512-e4g0EJtAjk64xgnFPD6kTBUtpnMVzDrMb12N1YZV0VvSlhnVT3SGxiYTLdGy8Q5cYHOIC/FAHmZ10eGrAguicQ==
 
 ts-graphviz@^1.5.0:
   version "1.8.1"

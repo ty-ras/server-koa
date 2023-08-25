@@ -4,7 +4,6 @@
 
 import type * as server from "./server";
 import * as serverGeneric from "@ty-ras/server";
-import * as serverNode from "./server-node";
 import * as net from "node:net";
 
 /**
@@ -25,7 +24,7 @@ export function listenAsync(
 /**
  *The helper function to listen to given {@link server.HttpServer} asynchronously.
  * @param server The {@link server.HttpServer} to listen to.
- * @param options The options for listening.
+ * @param options The {@link ListenOptions1} or {@link ListenOptions2}.
  * @returns Asynchronously nothing.
  */
 export function listenAsync(
@@ -36,7 +35,7 @@ export function listenAsync(
 /**
  * The helper function to listen to given {@link server.HttpServer} asynchronously.
  * @param server The {@link server.HttpServer} to listen to.
- * @param hostOrOptions The {@link net.ListenOptions}.
+ * @param hostOrOptions The {@link ListenOptions1} or {@link ListenOptions2}.
  * @param port The port to listen to.
  * @param backlog The backlog parameter, if any.
  * @returns Asynchronously nothing.
@@ -50,7 +49,6 @@ export function listenAsync(
   const opts: ListenOptions1 | ListenOptions2 =
     typeof hostOrOptions === "string"
       ? {
-          options: {},
           listen: {
             host: hostOrOptions,
             port,
@@ -60,7 +58,7 @@ export function listenAsync(
       : hostOrOptions;
 
   return serverGeneric.listenAsyncGeneric(
-    serverNode.createNodeServerGeneric(opts, server.callback()),
+    serverGeneric.createNodeServerGeneric(opts, server.callback()),
     typeof hostOrOptions === "string" ? hostOrOptions : hostOrOptions.listen,
     port,
     backlog,
@@ -81,7 +79,7 @@ export interface ListenOptionsBase {
  * This interface contains options for HTTP 1 servers when listening to them via {@link listenAsync}.
  */
 export interface ListenOptions1
-  extends serverNode.ServerOptions1<boolean>,
+  extends serverGeneric.NodeServerOptions1<boolean>,
     ListenOptionsBase {
   /**
    * Use this property if needed.
@@ -93,7 +91,7 @@ export interface ListenOptions1
  * This interface contains options for HTTP 2 servers when listening to them via {@link listenAsync}.
  */
 export interface ListenOptions2
-  extends serverNode.ServerOptions2<boolean>,
+  extends serverGeneric.NodeServerOptions2<boolean>,
     ListenOptionsBase {
   /**
    * Set this property to `2` in order to use HTTP2 server when listening.
