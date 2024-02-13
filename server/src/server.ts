@@ -2,7 +2,6 @@
  * @file This file exposes function to create Node HTTP 1 or 2 server serving giving TyRAS {@link ep.AppEndpoint}s.
  */
 
-import * as ep from "@ty-ras/endpoint";
 import * as server from "@ty-ras/server";
 import Koa from "koa";
 
@@ -37,7 +36,7 @@ export interface ServerCreationOptions<TStateInfo, TState> {
   /**
    * The TyRAS {@link ep.AppEndpoint}s to server via returned HTTP server.
    */
-  endpoints: ReadonlyArray<ep.AppEndpoint<ctx.ServerContext, TStateInfo>>;
+  endpoints: server.ServerEndpoints<ctx.ServerContext, TStateInfo>;
 
   /**
    * The callback to create endpoint-specific state objects.
